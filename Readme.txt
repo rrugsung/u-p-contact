@@ -1,4 +1,4 @@
-Developed by Dr.Kularathna, modified by Chihun Sung.
+Developed by Dr.Kularathna and Chihun Sung.
 
 FORMULATION 1: u-p formulation with Euler time integration
 
