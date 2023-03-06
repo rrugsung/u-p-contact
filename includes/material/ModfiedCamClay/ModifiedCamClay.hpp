@@ -1,7 +1,7 @@
 /***************************************************************************
                           Material Point Method
-                           Shyamini Kularathna
-                         Unversity Of Cambridge
+                              Chihun Sung
+                      Unversity Of Texas at Austin
 File: ModifiedCamClay.hpp
 ****************************************************************************/
 
