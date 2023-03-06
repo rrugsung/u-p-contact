@@ -1,13 +1,22 @@
 /*************************************************************************
                         2D-Material Point Method
-                       Author: Shyamini Kularathna
-                         University of Cambridge
+               Author: Shyamini Kularathna
+	       	       Chihun Sung
+		       
+         University of Cambridge & University of Texas at Austin
+	 
 Description: This file contains the incompressible fluid flow solver based on
              the Chorin's Projection method. The incompressible Navier-Stokes
              equations are solved using a semi-implicit approach in three steps.
+	     
+	     A multi-velocity contact algorithm between a two-phase material body
+	     and a rigid body is implemented. A contact detection process using 
+	     particle edge-to-edge distance is utilized. 
+	     	     
              There are weveral options to be chosen by the user.
                   1. Gravity is known at nodes or particles
                   2. Consistent mass matrix or lumped mass matrix
+		  3. Impervious interface or free-drainage interface
 **************************************************************************/
 // c++ header files
 #include <cstdlib>
@@ -36,8 +45,9 @@ Description: This file contains the incompressible fluid flow solver based on
 int main (int argc, char* argv[]) {
   
   Eigen::initParallel();
-  std::cout << "\n \n \t \t Semi-implicit Two Phase Material Point Method \n";
+  std::cout << "\n \n \t \t Semi-implicit Two Phase Contact Material Point Method \n";
   std::cout << "\t \t \t Univerisy Of Cambridge \n";
+  std::cout << "\t \t \t Univerisy Of Texas at Austin \n";
 
   // check the existence of input folder
   if (argc != 2)
