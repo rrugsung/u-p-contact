@@ -91,7 +91,6 @@ int main (int argc, char* argv[]) {
   bool TwoPhase = false;
   if (particles->number_of_tp_particles() != 0){
     TwoPhase = true;
-    std::cout << " Two-Phase Particles Included" << "\n \n";
   }
 
   bool Contact = true;
@@ -105,8 +104,6 @@ int main (int argc, char* argv[]) {
   mesh->set_element_gimp_nodes();
   double center = particles->give_center_coords();
   mesh -> iterate_over_nodes(std::bind(&mpm::Node::compute_multimaterial_normal_unit_vectors, std::placeholders::_1, center));
-  
-  //mesh->iterate_over_inner_elements(std::bind(&mpm::Element::print, std::placeholders::_1));
 
   //! TIME STEP BEGINS
   unsigned step = 0;
@@ -151,7 +148,6 @@ int main (int argc, char* argv[]) {
     //! MAP PARTICLE INFORMATION TO GRID NODES
     particles->iterate_over_tp_particles(std::bind(&mpm::Particle::update_nodal_phase, std::placeholders::_1));
     particles->iterate_over_particles(std::bind(&mpm::Particle::append_material_id, std::placeholders::_1));
-    //mesh->iterate_over_nodes(std::bind(&mpm::Node::print_material_ids, std::placeholders::_1));
     particles->iterate_over_tp_particles(std::bind(&mpm::Particle::append_particle_coordinate_to_element, std::placeholders::_1));
 
     //! IDENTIFY CONTACT NODES
@@ -178,10 +174,6 @@ int main (int argc, char* argv[]) {
     particles->iterate_over_sp_particles(std::bind(&mpm::Particle::assign_sp_traction_force_to_nodes, std::placeholders::_1, Contact, accumulate_time));
     particles->iterate_over_sp_particles(std::bind(&mpm::Particle::assign_sp_internal_force_to_nodes, std::placeholders::_1, Contact));
 
-    // COMPUTE MULTIMATERIAL UNIT NORMAL VECTOR
-    //particles->iterate_over_particles(std::bind(&mpm::Particle::map_multimaterial_domain_gradients, std::placeholders::_1));
-    // mesh->iterate_over_nodes_of_p(std::bind(&mpm::Node::compute_nodal_damping_forces, std::placeholders::_1,damping_factor));
-
     // BUILD MATRICES FOR THE CG SEMI-IMPLICIT SOLVER
     particles->iterate_over_tp_particles(std::bind(&mpm::Particle::compute_element_matrix_mp, std::placeholders::_1, dt));
     solver->assemble_solver(mesh);
@@ -198,12 +190,6 @@ int main (int argc, char* argv[]) {
     // COMPUTE FINAL ACCELERATIONS AND VELOCITIES
     mesh->iterate_over_nodes_of_p(std::bind(&mpm::Node::compute_final_solid_acceleration, std::placeholders::_1, dt));
 
-    // APPLY CONTACT MECHANICS
-    //mesh->iterate_over_nodes_of_p(std::bind(&mpm::Node::compute_multimaterial_relative_velocities, std::placeholders::_1));
-    //mesh->iterate_over_nodes_of_p(std::bind(&mpm::Node::apply_contact_mechanics, std::placeholders::_1, dt));
-
-    //mesh->iterate_over_nodes_of_p(std::bind(&mpm::Node::matrix_test, std::placeholders::_1));
-
     //! UPDATE PARTICLES
     if (Contact)
       particles->iterate_over_particles(std::bind(&mpm::Particle::update_contact_velocity_and_position, std::placeholders::_1, dt));
@@ -211,11 +197,6 @@ int main (int argc, char* argv[]) {
       particles->iterate_over_particles(std::bind(&mpm::Particle::update_velocity_and_position, std::placeholders::_1, dt, accumulate_time));
         
     particles->iterate_over_tp_particles(std::bind(&mpm::Particle::update_pressure, std::placeholders::_1));
-
-    //! PRESSURE SMOOTHENING (PRESSURE INCREMENT) - DEACTIVATE IF NOT NECESSARY
-    //particles->iterate_over_tp_particles(std::bind(&mpm::Particle::map_pressure_increment_to_nodes, std::placeholders::_1));
-    //mesh->iterate_over_nodes_of_p(std::bind(&mpm::Node::compute_nodal_pressure, std::placeholders::_1));
-    //particles->iterate_over_tp_particles(std::bind(&mpm::Particle::map_pressure_increment_from_nodes, std::placeholders::_1));
     
     particles->iterate_over_particles(std::bind(&mpm::Particle::update_porosity, std::placeholders::_1, dt));
 
