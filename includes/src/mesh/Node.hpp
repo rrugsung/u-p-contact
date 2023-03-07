@@ -2,6 +2,8 @@
                           Material Point Method
                            Shyamini Kularathna
                          University Of Cambridge
+		       	      Chihun Sung
+		       University of Texas at Austin
 File: Node.hpp
 ****************************************************************************/
 #ifndef MPM_NODE_H
