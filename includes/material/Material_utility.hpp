@@ -1,3 +1,11 @@
+
+/***************************************************************************
+                          Material Point Method
+                              Chihun Sung
+                      Unversity Of Texas at Austin
+File: ModifiedCamClay.hpp
+****************************************************************************/
+
 #ifndef MPM_MATERIAL_UTILITY_H_
 #define MPM_MATERIAL_UTILITY_H_
 
