@@ -2,6 +2,8 @@
                           Material Point Method
                            Shyamini Kularathna
                          University Of Cambridge
+		       	      Chihun Sung
+		       University of Texas at Austin
 File: Element.hpp
 ****************************************************************************/
 #ifndef MPM_ELEMENT_H
