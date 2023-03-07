@@ -1,7 +1,9 @@
 /***************************************************************************
                           Material Point Method
                            Shyamini Kularathna
-                         Unversity Of Cambridge
+                         University Of Cambridge
+		       	                   Chihun Sung
+		                  University of Texas at Austin
 File: Mesh.hpp
 ****************************************************************************/
 
