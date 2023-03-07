@@ -1,7 +1,9 @@
-/*****************************************************************************
-                        Material Point Method
-                         Shyamini Kularathna
-                       University of Cambridge
+/***************************************************************************
+                          Material Point Method
+                           Shyamini Kularathna
+                         University Of Cambridge
+		       	                   Chihun Sung
+		                  University of Texas at Austin
 FILE: MpmParticle.hpp
 *****************************************************************************/
 #ifndef MPM_MPMPARTICLE_H
