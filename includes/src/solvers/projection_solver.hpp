@@ -1,7 +1,9 @@
-/*************************************************************************
-                        Material Point Method
-                       Author: Shyamini Kularathna
-                         University of Cambridge
+/***************************************************************************
+                          Material Point Method
+                           Shyamini Kularathna
+                         University Of Cambridge
+		       	                   Chihun Sung
+		                  University of Texas at Austin
 FILE: Projection.hpp
 **************************************************************************/
 #ifndef MPM_PROJECTION_SOLVER_H
