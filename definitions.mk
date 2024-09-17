@@ -1,4 +1,4 @@
-# written by Shyamini Kularathna
+# written by Chihun Sung & Shyamini Kularathna
 
 WORK_DIR = /home/chihun/MPM/u-p-rigid2
 
